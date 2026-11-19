@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f7f1e9;
+  --color-paper: #fffdf8;
+  --color-earth: #7d3a31;
+  --color-ink: #302421;
+  --color-line: #dbccbf;
+  --font-serif: "Lora Variable", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
+}
+
+body { @apply m-0 bg-cream font-sans text-ink antialiased; }
+h1, h2, h3 { @apply font-serif; }
+::selection { @apply bg-earth text-white; }
+:focus-visible { @apply outline-2 outline-offset-4 outline-earth; }
+button:not(:disabled), summary { @apply cursor-pointer; }
+button:disabled { @apply opacity-50; }
+
+@layer components {
+  .frame { @apply mx-auto w-full max-w-6xl px-4 sm:px-8; }
+  .page-title { @apply text-4xl leading-tight tracking-tight sm:text-6xl; }
+  .button { @apply inline-flex min-h-11 items-center justify-center rounded-md bg-earth px-4 py-2 text-center text-sm font-semibold text-white hover:bg-ink; }
+  .button-secondary { @apply inline-flex min-h-11 items-center justify-center rounded-md border border-line bg-paper px-4 py-2 text-center text-sm font-semibold text-earth hover:border-earth; }
+  .field { @apply min-h-11 min-w-0 rounded-md border border-line bg-paper px-3 py-2 text-sm focus:border-earth; }
+  .text-link { @apply font-semibold text-earth underline underline-offset-4; }
+}
