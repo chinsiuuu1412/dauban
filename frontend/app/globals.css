@@ -17,6 +17,15 @@ h1, h2, h3 { @apply font-serif; }
 button:not(:disabled), summary { @apply cursor-pointer; }
 button:disabled { @apply opacity-50; }
 
+@keyframes intro-title-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro-title { animation: intro-title-reveal 800ms ease-out both; }
+}
+
 @layer components {
   .frame { @apply mx-auto w-full max-w-6xl px-4 sm:px-8; }
   .page-title { @apply text-4xl leading-tight tracking-tight sm:text-6xl; }

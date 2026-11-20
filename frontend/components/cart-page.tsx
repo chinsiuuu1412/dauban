@@ -52,7 +52,7 @@ export function CartPage() {
                 </Link>
                 <div>
                   <h2 className="text-xl"><Link href={detail(slug)}>{products[slug].name}</Link></h2>
-                  <p className="mt-1 text-sm">{money(products[slug].price)} · Giá demo</p>
+                  <p className="mt-1 text-sm">{money(products[slug].price)}</p>
                   <Quantity slug={slug} quantity={cart[slug]!} />
                 </div>
                 <p className="col-start-2 font-semibold text-earth sm:col-start-3">{money(products[slug].price * cart[slug]!)}</p>
@@ -60,7 +60,7 @@ export function CartPage() {
             ))}
           </ul>
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-            <p className="font-semibold">Tổng tiền hàng demo: {money(cartTotal(cart))}</p>
+            <p className="font-semibold">Tổng tiền hàng: {money(cartTotal(cart))}</p>
             <Link href="/dat-hang/" className="button">Tiến hành đặt hàng</Link>
           </div>
         </>

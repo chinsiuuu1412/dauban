@@ -14,5 +14,5 @@ export function detail(slug: Slug) {
 
 const currency = new Intl.NumberFormat('vi-VN');
 export function money(value: number) {
-  return currency.format(value) + ' đ';
+  return currency.format(value) + ' ₫';
 }

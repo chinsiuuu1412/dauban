@@ -2,6 +2,18 @@ import { demoLots, isSlug, products, slugs, type Slug } from './products.ts';
 
 export type Cart = Partial<Record<Slug, number>>;
 export type LookupResult = Slug | 'empty' | 'incomplete' | 'missing';
+export type Delivery = { name: string; phone: string; address: string; note: string };
+
+export function validateDelivery(delivery: Delivery) {
+  const values = {
+    name: delivery.name.trim(),
+    phone: delivery.phone.trim(),
+    address: delivery.address.trim(),
+    note: delivery.note.trim(),
+  };
+  const missing = (['name', 'phone', 'address'] as const).filter((field) => !values[field]);
+  return { values, missing };
+}
 
 export function lookup(mode: 'code' | 'lot', value: string, lot = ''): LookupResult {
   const code = value.trim();

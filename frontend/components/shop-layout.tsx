@@ -37,12 +37,6 @@ export function ShopLayout({ children }: { children: React.ReactNode }) {
     <CartProvider>
       <Navigation />
       {children}
-      <footer className="mt-16 border-t border-line bg-paper">
-        <div className="frame flex flex-wrap items-center justify-between gap-3 py-6 text-sm">
-          <Link href="/ve-chung-toi/" className="text-link">Tìm hiểu câu chuyện Dấu Bản</Link>
-          <p>Prototype · Sản phẩm, giá, mã truy xuất và đơn hàng mô phỏng.</p>
-        </div>
-      </footer>
     </CartProvider>
   );
 }

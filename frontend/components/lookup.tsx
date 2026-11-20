@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useCallback, useState, type FormEvent } from 'react';
 import { demoLots, isSlug, products, type Slug } from '../lib/products';
 import { lookup, qrProduct } from '../lib/shop';
-import { detail, photo, publishedSite } from '../lib/site';
+import { detail, money, photo, publishedSite } from '../lib/site';
 import { Modal } from './modal';
 import { Scanner } from './scanner';
 
@@ -70,6 +70,7 @@ export function Lookup() {
             <Image src={photo(preview)} alt={products[preview].name} fill sizes="400px" className="object-contain" />
           </div>
           <p className="mt-4 text-sm leading-relaxed">{products[preview].description}</p>
+          <p className="mt-2 font-semibold text-earth">{money(products[preview].price)}</p>
           <Link className="button mt-4" href={detail(preview)}>Xem chi tiết</Link>
         </Modal>
       )}

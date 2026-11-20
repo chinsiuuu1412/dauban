@@ -1,15 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { demoLots, products, slugs } from '../lib/products.ts';
-import { addQuantity, cartTotal, confirmCod, readCart, setQuantity, lookup, qrProduct } from '../lib/shop.ts';
+import { addQuantity, cartTotal, confirmCod, readCart, setQuantity, lookup, qrProduct, validateDelivery } from '../lib/shop.ts';
 
 test('danh mục ghép ảnh và giá demo theo slug, để trống khối lượng tịnh của hộp', () => {
   assert.deepEqual(slugs.map((slug) => [slug, products[slug].image, products[slug].price]), [
     ['hop-qua', 'hop-qua.jpg', 690_000],
-    ['ca-phe', 'ca-phe.jpg', 250_000],
-    ['hat-dieu', 'hat-dieu.jpg', 250_000],
-    ['mac-ca', 'mac-ca.jpg', 250_000],
+    ['ca-phe', 'ca-phe.jpg', 89_000],
+    ['hat-dieu', 'hat-dieu.jpg', 99_000],
+    ['mac-ca', 'mac-ca.jpg', 119_000],
   ]);
+  assert.equal(products['hop-qua'].name, 'Hương Đất Đắk Lắk');
   assert.equal(products['hop-qua'].weight, null);
   assert.equal(products['hop-qua'].ingredients, 'Cà phê 150 g, hạt điều 150 g, mắc ca 150 g');
 });
@@ -58,7 +59,7 @@ test('QR chỉ chấp nhận đúng HTTPS, base path và slug', () => {
 
 test('giỏ cộng, đổi, xoá số lượng và tính tổng theo giá demo', () => {
   const cart = addQuantity({ 'hop-qua': 1 }, 'ca-phe', 2);
-  assert.equal(cartTotal(cart), 1190000);
+  assert.equal(cartTotal(cart), 868_000);
   assert.equal(addQuantity(cart, 'ca-phe', 1)['ca-phe'], 3);
   assert.equal(addQuantity(cart, 'ca-phe', 1.2), cart);
   assert.equal(addQuantity(cart, 'ca-phe', 0), cart);
@@ -70,6 +71,25 @@ test('giỏ cộng, đổi, xoá số lượng và tính tổng theo giá demo',
 test('giỏ đọc lại bỏ dữ liệu lỗi, slug lạ, số lượng không hợp lệ', () => {
   assert.deepEqual(readCart('{'), {});
   assert.deepEqual(readCart('{"mac-ca":3,"ca-phe":-1,"hat-dieu":"2","other":5}'), { 'mac-ca': 3 });
+});
+
+test('giỏ đã lưu tính lại tổng ba món theo giá hiện tại', () => {
+  assert.equal(cartTotal(readCart('{"ca-phe":1,"hat-dieu":1,"mac-ca":1}')), 307_000);
+});
+
+test('thông tin giao hàng được cắt khoảng trắng và giữ số 0 đầu', () => {
+  const result = validateDelivery({
+    name: ' Người thử ', phone: ' 0001234567 ', address: ' Địa chỉ giả ', note: ' Ghi chú giả ',
+  });
+  assert.deepEqual(result, {
+    values: { name: 'Người thử', phone: '0001234567', address: 'Địa chỉ giả', note: 'Ghi chú giả' },
+    missing: [],
+  });
+});
+
+test('thông tin giao hàng liệt kê trường bắt buộc còn trắng, ghi chú tùy chọn', () => {
+  const { missing } = validateDelivery({ name: ' ', phone: '', address: ' ', note: '' });
+  assert.deepEqual(missing, ['name', 'phone', 'address']);
 });
 
 test('COD chỉ xóa giỏ đã duyệt và không xác nhận lần hai', () => {

@@ -18,7 +18,7 @@ export function ProductRow({ slug, featured = false }: { slug: Slug; featured?: 
           <Link href={detail(slug)} className="hover:text-earth">{product.name}</Link>
         </h2>
         <p className="mt-2 text-xs leading-relaxed sm:mt-4 sm:text-base">{product.description}</p>
-        <p className="mt-2 font-semibold text-earth sm:text-lg">{money(product.price)} <span className="text-xs font-normal">· Giá demo</span></p>
+        <p className="mt-2 font-semibold text-earth sm:text-lg">{money(product.price)}</p>
         {featured && <Link href="/san-pham/#hop-qua" className="text-link mt-2 inline-flex text-sm">Xem hộp quà trong danh mục</Link>}
         <AddToCart slug={slug} />
       </div>

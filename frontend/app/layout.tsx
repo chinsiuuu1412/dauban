@@ -5,6 +5,7 @@ import '@fontsource/be-vietnam-pro/400.css';
 import '@fontsource/be-vietnam-pro/500.css';
 import '@fontsource/be-vietnam-pro/600.css';
 import '@fontsource/be-vietnam-pro/700.css';
+import { SiteFooter } from '../components/site-footer';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="vi"><body>{children}</body></html>;
+  return <html lang="vi"><body>{children}<SiteFooter /></body></html>;
 }

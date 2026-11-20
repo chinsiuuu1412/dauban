@@ -40,7 +40,7 @@ Các QR của cấu hình này mã hóa URL kiểm thử. Camera trong web có t
 
 | Sản phẩm | Mã truy xuất | GTIN demo | Số lô demo |
 | --- | --- | --- | --- |
-| Hộp quà Dấu Bản | `DB-DEMO-001` | `DEMO-GTIN-001` | `DEMO-LO-001` |
+| Hương Đất Đắk Lắk | `DB-DEMO-001` | `DEMO-GTIN-001` | `DEMO-LO-001` |
 | Cà phê Đắk Lắk | `DB-DEMO-002` | `DEMO-GTIN-002` | `DEMO-LO-002` |
 | Hạt điều Đắk Lắk | `DB-DEMO-003` | `DEMO-GTIN-003` | `DEMO-LO-003` |
 | Mắc ca Đắk Lắk | `DB-DEMO-004` | `DEMO-GTIN-004` | `DEMO-LO-004` |

@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: Props) {
           <h1 className="page-title">{product.name}</h1>
           <p className="mt-4 leading-relaxed">{product.description}</p>
           {slug === 'hop-qua' && <Link href="/ve-chung-toi/" className="text-link mt-3 inline-block text-sm">Đọc câu chuyện Dấu Bản</Link>}
-          <p className="mt-4 font-semibold text-earth">{money(product.price)} · Giá demo</p>
+          <p className="mt-4 font-semibold text-earth">{money(product.price)}</p>
           <AddToCart slug={slug} />
           <ProductTabs slug={slug} />
         </div>

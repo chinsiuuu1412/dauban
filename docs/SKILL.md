@@ -9,15 +9,12 @@ Làm việc với vai trò Senior Web Developer. Kiểm tra quy tắc repo, work
 
 Đọc [phạm vi và tài liệu nguồn](references/scope.md) trước. Áp dụng quyết định mới nhất đã được người dùng chốt khi Figma hoặc tài liệu nguồn còn mô tả luồng cũ. Giữ nguyên ba tài liệu nguồn và các bản `(1)` nếu có cho đến khi người dùng duyệt thay đổi qua quiz.
 
-Với quyết định còn thiếu làm ảnh hưởng đến kết quả, hỏi quiz theo nhóm 1–3 câu. Mỗi câu có 2–3 phương án, tác động, phương án đề xuất và chỗ nhập lựa chọn khác. Chờ câu trả lời cho phần phụ thuộc và tiếp tục phần độc lập. Khi cần sửa tài liệu nguồn, nêu tên file, lý do, thay đổi cụ thể và tác động trong quiz.
+Với quyết định còn thiếu làm ảnh hưởng đến kết quả, hỏi quiz theo nhóm 1–3 câu. Mỗi câu có 2–3 phương án, tác động, phương án đề xuất và chỗ nhập lựa chọn khác. Chờ câu trả lời cho phần phụ thuộc và tiếp tục phần độc lập. Khi người dùng muốn bổ sung liên kết Liên hệ, hỏi tên hiển thị, URL và thứ tự, có lựa chọn “Bổ sung sau”. Xem [trạng thái footer](references/experience.md#footer) trước khi hỏi. Khi cần sửa tài liệu nguồn, nêu tên file, đoạn hiện tại, thay đổi đề xuất, lý do và tác động trong quiz.
 
-| Bước | Tài liệu áp dụng |
+| Nhóm công việc | Điểm vào và hướng dẫn |
 |---|---|
-| 0. Khảo sát | [Phạm vi, đầu vào và ảnh](references/scope.md) |
-| 1. Frontend | [Giao diện và tương tác](references/experience.md), [nhận diện](references/design-system.md) |
-| 2. Nghiệp vụ TypeScript trong trình duyệt | [Dữ liệu và tra cứu](references/traceability.md), [giỏ và COD](references/experience.md) |
-| 3. Tích hợp | [Các điểm vào của giao diện](references/experience.md) và [luồng QR](references/traceability.md) |
-| 4. Kiểm thử, sửa và chạy lại | [Nghiệm thu bản export](references/release.md#trước-khi-xuất-bản) |
-| 5. Deploy và kiểm thử lại | [Nghiệm thu trên Pages](references/release.md#sau-khi-xuất-bản) |
+| Frontend | Màn mở đầu, Trang chủ, Danh mục, Chi tiết, footer chung, Về chúng tôi và form Đặt hàng. Xem [bản đồ mã nguồn](references/scope.md#điểm-vào-trong-repo), [giao diện và tương tác](references/experience.md) và [nhận diện](references/design-system.md). |
+| Nghiệp vụ mô phỏng trong trình duyệt | Danh mục theo slug, tra cứu và QR, giỏ và COD nhập tay. Bắt đầu ở `frontend/lib/products.ts`, `frontend/lib/shop.ts`, rồi nối qua các component hiện có. Xem [dữ liệu và nghiệp vụ](references/traceability.md). |
+| Kiểm thử trước và sau deploy | Chạy kiểm tra mã, nghiệm thu bản static export cạnh dev local, rồi kiểm tra lại trên Pages HTTPS khi đã có quyền và nhánh xác nhận. Xem [trước khi xuất bản](references/release.md#trước-khi-xuất-bản) và [sau khi xuất bản](references/release.md#sau-khi-xuất-bản). |
 
-Sau mỗi bước, báo tệp đã sửa, lệnh kiểm tra, kết quả quan sát và các mục còn chờ. Chỉ đánh dấu đạt khi có bằng chứng.
+Khi cập nhật hướng dẫn, sửa trực tiếp skill và references hiện có. Sau mỗi bước, báo tệp đã sửa, lệnh kiểm tra, kết quả quan sát và các mục còn chờ. Tách kết quả trên dev local, bản static export và GitHub Pages HTTPS. Chỉ đánh dấu đạt khi có bằng chứng.

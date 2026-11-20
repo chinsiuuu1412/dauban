@@ -4,7 +4,9 @@ Viết các hàm nghiệp vụ TypeScript có thể gọi và kiểm thử độ
 
 ## Sản phẩm và bản ghi lô
 
-Trang chủ, Danh mục, Chi tiết và thẻ xem trước cùng đọc một nguồn dữ liệu theo slug, gồm tên, ảnh, mô tả, giá demo và chi tiết từ [thông tin sản phẩm](information.md). Áp dụng các mục chưa xác nhận theo [phạm vi](scope.md). Mỗi bản ghi truy xuất trỏ đến đúng slug. Tra bằng mã truy xuất duy nhất hoặc cặp GTIN–số lô thuộc cùng bản ghi. Lưu mã dạng chuỗi, cắt khoảng trắng đầu cuối và giữ số 0 đầu.
+Đặt tên hiển thị, ảnh, mô tả và giá theo slug trong `frontend/lib/products.ts`. Trang chủ, Danh mục, Chi tiết, thẻ xem trước, Giỏ hàng và bước Xem lại dùng chung dữ liệu theo slug. Áp dụng [danh mục và giá hiện tại](scope.md#danh-mục-và-giá-hiện-tại) cho các quyết định cập nhật từ [tài liệu thông tin sản phẩm](information.md). Dùng `money()` từ `frontend/lib/site.ts` để định dạng VND với ký hiệu `₫`. Giữ thông báo mô phỏng ở footer. Giỏ đã lưu tính tổng bằng giá hiện tại. Một cà phê, một hạt điều và một mắc ca có tổng tiền hàng 307.000 ₫.
+
+Đổi tên hiển thị của `hop-qua` thành **Hương Đất Đắk Lắk**. Giữ slug, neo `#hop-qua`, URL chi tiết, URL QR và bộ mã truy xuất đang dùng. Mỗi bản ghi truy xuất trỏ đến đúng slug. Tra bằng mã truy xuất duy nhất hoặc cặp GTIN–số lô thuộc cùng bản ghi. Lưu mã dạng chuỗi, cắt khoảng trắng đầu cuối và giữ số 0 đầu.
 
 Dùng bộ mã demo đã có trong repo hoặc bảng mẫu dưới đây. Gắn nhãn mô phỏng. Nếu các bộ mã xung đột hoặc cần một định dạng khác, chốt qua quiz trước khi đổi quy tắc hiển thị và tra cứu.
 
@@ -25,4 +27,6 @@ Dùng bộ mã demo đã có trong repo hoặc bảng mẫu dưới đây. Gắn
 ## Nghiệp vụ giỏ và COD
 
 - Quản lý thêm, đổi số lượng, xóa và tính tổng từ nguồn dữ liệu sản phẩm. Chỉ lưu slug và số lượng của giỏ bằng `localStorage` sau khi vào trình duyệt. Xử lý dữ liệu lỗi hoặc slug đã bỏ. Không đọc `localStorage` khi build.
-- Thông tin giao hàng mẫu chỉ tồn tại trong phiên. Tách xác nhận đơn mô phỏng khỏi thao tác chỉnh giỏ và chặn xác nhận lặp. Hủy giữ giỏ, đặt thành công mới xóa giỏ. Không lưu thông tin cá nhân hoặc gửi đơn ra ngoài.
+- Form nhập tay trong `frontend/components/checkout.tsx` dùng `validateDelivery()` từ `frontend/lib/shop.ts`. Cắt khoảng trắng đầu cuối khi kiểm tra họ tên, số điện thoại, địa chỉ và ghi chú. Ba trường đầu là bắt buộc, ghi chú tùy chọn. Giữ số điện thoại dạng chuỗi để bảo toàn số 0 đầu.
+- Giữ thông tin giao hàng giả trong trạng thái form để người xem sửa được sau bước xem lại. Tải lại trang không khôi phục thông tin này. Giữ dữ liệu form ngoài URL và bộ nhớ lưu giỏ. Toàn bộ xác nhận diễn ra trong trình duyệt, không gửi request chứa đơn hàng hoặc thông tin giao hàng.
+- Dùng `confirmCod()` để đối chiếu giỏ lúc xác nhận với giỏ tại bước Xem lại. Nếu giỏ đã đổi, yêu cầu xem lại trước khi xác nhận. Chặn xác nhận lặp. Hủy giữ giỏ, đặt thành công mới xóa giỏ.
