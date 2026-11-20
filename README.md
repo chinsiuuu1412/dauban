@@ -1,52 +1,44 @@
-# Dấu Bản
+## WEB GIỚI THIỆU SẢN PHẨM DỰ ÁN "DẤU BẢN"
 
-Prototype tiếng Việt giới thiệu hộp quà và ba nông sản Đắk Lắk. Giá, mã truy xuất, mã GTIN–số lô, đặt hàng COD và thông tin giao hàng đều là dữ liệu mô phỏng. OCOP 4 sao là chứng nhận giả định của dự án. Prototype chạy hoàn toàn trong trình duyệt. Giỏ lưu slug và số lượng trong `localStorage`.
+- Người thực hiện: Ánh Ngọc
+- Tình trạng: prototype (không có user thật)
+- Version: 1
+- Thời gian: 19/11/2026
 
-## Chạy local
+Dấu Bản giới thiệu hộp quà **Hương Đất Đắk Lắk**, gồm cà phê, hạt điều và mắc ca, cùng câu chuyện về vùng đất Đắk Lắk và văn hóa Ê Đê. Giá, mã truy xuất và đơn COD là dữ liệu mô phỏng. OCOP 4 sao là chứng nhận giả định của dự án. [Thiết kế Figma](https://www.figma.com/design/WQwg56ZDSTNlaNkBaoDPMO?node-id=1-8) · [GitHub](https://github.com/chinsiuuu1412/dauban)
 
-Cần Node.js 22.18 trở lên. Workflow Pages sử dụng Node.js 24.
+## Các công nghệ sử dụng:
 
-```sh
-cd frontend
-npm ci
-npm run dev
-```
+- **Next.js App Router, React và TypeScript** cho cấu trúc trang và nghiệp vụ trong trình duyệt.
+- **Tailwind CSS và Motion** cho giao diện responsive và chuyển cảnh. **Lora Variable** dùng cho tiêu đề, **Be Vietnam Pro** cho nội dung. [Hệ thống thiết kế](docs/references/design-system.md)
+- **jsQR và qrcode** để đọc và tạo QR. **GitHub Actions và GitHub Pages** để build và phục vụ bản static export.
+- Model AI sử dụng: Chat GPT 6.2-Sol.
 
-Mở `http://localhost:3000/` để xem ba cảnh mở đầu hoặc `http://localhost:3000/trang-chu/` để vào thẳng Trang chủ.
-
-Trong PowerShell, dùng `npm.cmd` nếu chính sách thực thi chặn `npm.ps1`.
-
-```sh
-npm run lint
-npm run typecheck
-npm test
-npm run build
-```
-
-Bản static nằm trong `frontend/out/`. Khi phục vụ dưới một đường dẫn con, đặt `NEXT_PUBLIC_BASE_PATH` khi build, ví dụ `/dauban`, rồi phục vụ thư mục export tại đường dẫn tương ứng.
-
-Để tạo QR phục vụ kiểm thử local, chạy trong PowerShell từ `frontend/`:
+Chạy trên máy với Node.js 22.18 trở lên. Từ thư mục chứa README này, dùng PowerShell.
 
 ```powershell
-$env:NEXT_PUBLIC_BASE_PATH = '/dauban'
-$env:NEXT_PUBLIC_SITE_URL = 'https://example.com/dauban/'
-npm.cmd run build
-Remove-Item Env:NEXT_PUBLIC_BASE_PATH, Env:NEXT_PUBLIC_SITE_URL
+Set-Location -LiteralPath '.\frontend'
+npm.cmd ci
+npm.cmd run dev
 ```
 
-Các QR của cấu hình này mã hóa URL kiểm thử. Camera trong web có thể đọc chúng để mở thẻ xem trước. Quét bằng ứng dụng camera mặc định cần QR được tạo từ URL Pages thật để mở trang chi tiết đã xuất bản.
+[Mở bản local](http://localhost:3000/) · [Mở bản GitHub Pages](https://chinsiuuu1412.github.io/dauban/)
 
-## Dữ liệu tra cứu demo
+## Giới thiệu về các tính năng
 
-| Sản phẩm | Mã truy xuất | GTIN demo | Số lô demo |
-| --- | --- | --- | --- |
-| Hương Đất Đắk Lắk | `DB-DEMO-001` | `DEMO-GTIN-001` | `DEMO-LO-001` |
-| Cà phê Đắk Lắk | `DB-DEMO-002` | `DEMO-GTIN-002` | `DEMO-LO-002` |
-| Hạt điều Đắk Lắk | `DB-DEMO-003` | `DEMO-GTIN-003` | `DEMO-LO-003` |
-| Mắc ca Đắk Lắk | `DB-DEMO-004` | `DEMO-GTIN-004` | `DEMO-LO-004` |
+- **Mở đầu và Về chúng tôi.** Ba cảnh chuyển bằng cuộn, vuốt hoặc bàn phím. Trang Về chúng tôi kể câu chuyện dự án, giới thiệu ba nông sản, bao bì và năm bước trải nghiệm.
+- **Danh mục và chi tiết.** Xem tên, ảnh và giá của bốn sản phẩm. Trang chi tiết có các tab Hành trình, Thông tin sản phẩm và Doanh nghiệp.
+- **Tra cứu và QR.** Tra bằng mã truy xuất hoặc cặp GTIN–số lô để mở thẻ xem trước. Ví dụ dùng `DB-DEMO-001` hoặc `DEMO-GTIN-001` / `DEMO-LO-001` cho hộp quà. QR trên bản đã cấu hình trỏ đến trang chi tiết HTTPS. [Chi tiết hộp quà](https://chinsiuuu1412.github.io/dauban/san-pham/hop-qua/)
+- **Giỏ và COD mô phỏng.** Thêm, đổi số lượng hoặc xóa sản phẩm. Một cà phê, một hạt điều và một mắc ca có tổng **307.000 ₫** trên bản cập nhật. Nhập thông tin giao hàng giả, xem lại rồi xác nhận. Giỏ chỉ lưu mã sản phẩm và số lượng trong trình duyệt.
 
-## GitHub Pages
+## Kết quả chạy kiểm thử
 
-[Workflow Pages](.github/workflows/pages.yml) chạy thủ công sau khi repo được cấp quyền xuất bản và **Settings → Pages → Source** được đặt thành **GitHub Actions**. Workflow lấy URL HTTPS và base path từ Pages rồi tạo mã QR trỏ đến từng trang chi tiết. Ví dụ với URL project site dự kiến, QR của Hộp quà trỏ đến `https://chinsiuuu1412.github.io/dauban/san-pham/hop-qua/`. Các bản build local mặc định hiển thị thông báo chờ cấu hình QR.
+- **Kiểm thử nghiệp vụ ngày 20/11/2026.** Chạy lại `npm.cmd test` từ `frontend/` với kết quả **12/12 ca đạt**. Bao gồm tra cứu đúng và sai, kiểm tra URL QR, tính tổng giỏ, trường bắt buộc khi đặt hàng và chặn xác nhận COD lặp.
+- **Nghiệm thu trước đó.** Lint, typecheck, build và các luồng chính trên dev và static export `/dauban` đã được kiểm tra ở lượt nghiệm thu trước. Báo cáo ngày 19/11 ghi kết quả của bản khi đó. [Báo cáo nghiệm thu](docs/qa/2026-11-19.md)
+- **Kiểm tra tiếp theo.** Camera mặc định và scanner web còn chờ thử bằng điện thoại thật trên HTTPS. [Tiêu chí nghiệm thu](docs/references/release.md)
 
-[Thiết kế Figma](https://www.figma.com/design/WQwg56ZDSTNlaNkBaoDPMO?node-id=1-8) · [Tiêu chí nghiệm thu](docs/references/release.md)
+## Một số điều cần bổ sung sau Prototype
+
+- Khi phát triển thành website full-stack, bổ sung hướng dẫn sử dụng, chính sách bảo mật và chính sách cookie cho người dùng.
+- Xây dựng backend và cơ sở dữ liệu cho nghiệp vụ thực tế. Prototype hiện chạy trong trình duyệt.
+- Bổ sung thông tin Liên hệ khi có tên hiển thị và URL được xác nhận.
